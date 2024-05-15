@@ -1,45 +1,38 @@
 const mongoose = require('mongoose');
+const {Schema}=mongoose;
+
+mongoose.connect("mongodb://127.0.0.1:27017/phonepayment");
 
 const userSchema = new mongoose.Schema({
     username: {
         type:String,
-        required:true,
         unique:true,
         trim:true,
-        lowercase:true,
-        minLength:3,
-        maxLength:30
+        lowercase:true
     },
     password: {
-        tyep:String,
-        required:true,
-        minLength:6
+        tyep:String
     },
     firstName: {
         type:String,
-        required:true,
-        trim:true,
-        maxLength:50
+        trim:true
     },
     lastName: {
         type:String,
-        required:true,
-        trim:true,
-        maxLength:50
+        trim:true
     }
 });
+
 
 const User = mongoose.model('User',userSchema);
 
 const accountSchema = new mongoose.Schema({
     userId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User',
-        required:true
+        ref:'User'
     },
     balance:{
-        type:number,
-        required:true
+        type:Number
     }
 });
 
